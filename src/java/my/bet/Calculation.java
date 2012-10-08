@@ -4,17 +4,15 @@
  */
 package my.bet;
 
-import java.text.DecimalFormat;
-import java.util.Date;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author j0ni
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class Calculation {
 
     private double odd1;
@@ -22,8 +20,6 @@ public class Calculation {
     private double profit;
     private double lost;
     private double bet;
-    private Date date;
-    private BetLog betLog=new BetLog();
     
     /** Creates a new instance of Calculation */
     public Calculation() {
@@ -33,7 +29,6 @@ public class Calculation {
         this.odd2=0;
         this.profit=0;
         this.lost=0;
-        this.date=new Date();
     }
     
        public double getBet() {
@@ -74,36 +69,11 @@ public class Calculation {
     public void setProfit(double profit) {
         this.profit = profit;
     }
-
-    public String getDate() {
-        return date.toString();
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public BetLog getBetLog() {
-        return betLog;
-    }
-
-    public void setBetLog(BetLog betLog) {
-        this.betLog = betLog;
-    }
-    
     
 //TODO add history facilities    
 
     public void execAlgorithm(double profit, double lost, double odd1, double odd2) {
         //Π= (Χ+Κ)/((Α1*Α2)-1)
-         
-         DecimalFormat dec=new DecimalFormat("0.00");
-         
-         Double fbet=this.bet=(profit+lost)/((odd1*odd2)-1);
-         this.bet=Double.parseDouble(dec.format(fbet));
-         betLog.addToList(this);
-         this.lost+=this.bet;
-         this.odd1=0f;
-         this.odd2=0f;
+         this.bet=(profit+lost)/((odd1*odd2)-1);
     }
 }
