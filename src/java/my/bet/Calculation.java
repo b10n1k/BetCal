@@ -4,8 +4,11 @@
  */
 package my.bet;
 
+import java.util.Date;
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -18,8 +21,36 @@ public class Calculation {
     private double odd1;
     private double odd2;
     private double profit;
-    private double lost;
+    private static double lost=0;
     private double bet;
+    private Date date;
+    BetLog blog=new BetLog();
+
+    public BetLog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(BetLog blog) {
+        this.blog = blog;
+    }
+    
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    private DateBean dt;
+
+    public DateBean getDt() {
+        return dt;
+    }
+
+    public void setDt(DateBean dt) {
+        this.dt = dt;
+    }
+    
     
     /** Creates a new instance of Calculation */
     public Calculation() {
@@ -28,7 +59,9 @@ public class Calculation {
         this.odd1=0;
         this.odd2=0;
         this.profit=0;
-        this.lost=0;
+        
+        DateBean dt=new DateBean();
+        this.date=new Date();
     }
     
        public double getBet() {
@@ -43,7 +76,7 @@ public class Calculation {
     }
 
     public void setLost(double lost) {
-        this.lost = lost;
+        Calculation.lost = lost;
     }
 
     public double getOdd1() {
@@ -74,6 +107,11 @@ public class Calculation {
 
     public void execAlgorithm(double profit, double lost, double odd1, double odd2) {
         //Π= (Χ+Κ)/((Α1*Α2)-1)
-         this.bet=(profit+lost)/((odd1*odd2)-1);
+         
+         Double res=(profit+lost)/((odd1*odd2)-1);
+         Calculation.lost+=res;
+         this.bet=res;
+         blog.addToList(this);
+         
     }
 }

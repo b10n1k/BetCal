@@ -16,6 +16,7 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class DateBean {
 
+    private String dt;
     /** Creates a new instance of DateBean */
     public DateBean() {
         
@@ -24,4 +25,13 @@ public class DateBean {
     public Date getToday() {
         return new Date();
     }
+    
+    public void setToday(Date dt) {
+        this.dt=dt.toString();
+    }
+    
+    public String toString(){
+        return this.dt.toString();
+    }
+    
 }

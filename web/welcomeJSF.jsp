@@ -14,9 +14,10 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>CalBet_Main Form</title>
+            
         </head>
         <f:view>
-        <body>
+            <body >
             <h2 align="center">Bet Tool</h2>
             <p> You are can earn always money in bet using this small trick. The main idea is:
                 <br />
@@ -31,7 +32,7 @@
             <h4>Good luck</h4>
             </p>
             <h5 align="left">
-            <h:outputText value="#{dateBean.today}">
+                <h:outputText id="curDate" value="#{calculation.date.toGMTString()}">
         <f:convertDateTime dateStyle="full" timeZone="EST" type="date" />
             </h:outputText>    
             </h5>
@@ -48,7 +49,7 @@
             </h:form>
                 <hr />
                
-                <f:subview id="monitor" >
+                
                     <font size="4px" color="blue" >
                     <h:outputText id="moneyPlay" value="#{calculation.bet}"></h:outputText>
                     <br />
@@ -57,12 +58,12 @@
                      <font size="2px" color="red" >Lost Counter:
                 <h:outputText id="lost" value="#{calculation.lost}" ></h:outputText></font><br />
                 
-                <h:outputText id="log" value="#{calculation.betLog.reportList()}" ></h:outputText><br />
-                <C:FOREACH var="betLog" items="${betList}">  
-             <C:OUT value="${betList.log}"></C:OUT>  
+                    <h:outputText id="log" value="#{calculation.blog.reportList()}" ></h:outputText><br /> 
+               <%-- <C:FOREACH var="calculation" items="${blog}">  
+                    <C:OUT value="${calculation.blog.reportList.toString()}"></C:OUT>  
                
-    </C:FOREACH>  
-                </f:subview>
+    </C:FOREACH>  --%>
+                
         </body>
 
         </f:view>
