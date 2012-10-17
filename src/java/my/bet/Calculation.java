@@ -77,6 +77,7 @@ public class Calculation {
 
     public void setLost(double lost) {
         Calculation.lost = lost;
+        
     }
 
     public double getOdd1() {
